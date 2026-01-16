@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI Image Editor
 
-## Getting Started
+A conversational AI-powered image editor built with Next.js 16 and ImageKit.io. Describe your edits in natural language and watch them apply in real-time.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![ImageKit](https://img.shields.io/badge/ImageKit-SDK-blue)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green)
+
+## Features
+
+- 🖼️ **Live Image Transformations** - Real-time preview using ImageKit SDK
+- 🤖 **AI-Powered Editing** - Describe edits in natural language (powered by Gemini)
+- ↩️ **Undo Support** - Revert to previous transformation states
+- 💾 **Persistent Sessions** - Chat history saved to MongoDB Atlas
+- 📤 **Drag & Drop Upload** - Automatic upload to ImageKit
+
+## Quick Start
+
+### 1. Clone & Install
+
+```bash
+git clone <your-repo>
+cd ai-image-editor
+npm install
+```
+
+### 2. Configure Environment
+
+Create a `.env` file:
+
+```env
+# MongoDB
+MONGODB_URI="your-mongodb-uri"
+MONGODB_DB="ai_image_editor"
+
+# Gemini AI
+GEMINI_API_KEY="your-gemini-api-key"
+
+# ImageKit (Server-side)
+IMAGEKIT_PUBLIC_KEY=your-public-key
+IMAGEKIT_PRIVATE_KEY=your-private-key
+IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your-id
+
+# ImageKit (Client-side)
+NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY=your-public-key
+NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your-id
+```
+
+### 3. Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Click **Launch Editor**
+2. Upload an image (drag & drop or click)
+3. Describe your edits:
+   - "Remove the background"
+   - "Crop to face"
+   - "Add drop shadow"
+   - "Make it grayscale"
+   - "Resize to 16:9"
+4. Click **↩ Undo** to revert changes
+5. Click **+ New Image** to start fresh
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Technology | Purpose |
+|------------|---------|
+| Next.js 16 | Framework |
+| @imagekit/next | Image transformations |
+| @google/generative-ai | AI chat (Gemini) |
+| MongoDB | Session persistence |
+| Tailwind CSS | Styling |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Method | Description |
+|-------|--------|-------------|
+| `/api/chat` | POST | Generate transformation params |
+| `/api/upload-auth` | GET | ImageKit upload credentials |
+| `/api/history` | GET/POST | Load/save session history |
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
