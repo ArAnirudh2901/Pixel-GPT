@@ -19,7 +19,7 @@ A conversational AI-powered image editor built with Next.js 16 and ImageKit.io. 
 ### 1. Clone & Install
 
 ```bash
-git clone <your-repo>
+git clone (https://github.com/ArAnirudh2901/Pixel-GPT.git)
 cd ai-image-editor
 npm install
 ```
